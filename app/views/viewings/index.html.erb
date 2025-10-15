@@ -1,0 +1,7 @@
+<h1> ALL VIEWINGS</h1>
+<ul>
+  <% @viewings.each do |viewing| %>
+    <li><%= viewing.title %></li>
+    <li><%= viewing.category %></li>
+  <% end %>
+</ul>

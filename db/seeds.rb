@@ -7,3 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+require 'faker'
+
+# 1. Clean the database 🗑️
+puts "Cleaning database..."
+Viewing.destroy_all
+
+# 2. Create the instances 🏗️
+puts "Creating viewings..."
+Viewing.create!(title: Faker::Movie.title, category: "movie")
+puts "Created Viewings"
+Viewing.create!(title: Faker::Movie.title, category: "serie")
+puts "Created Viewings"
+
+# 3. Display a message 🎉
+puts "Finished! Created #{Viewing.count} viewings."
