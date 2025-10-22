@@ -1,0 +1,23 @@
+<!-- app/views/viewings/search.turbo_stream.erb -->
+<%= turbo_stream.update "search_results" do %>
+  <div class="results-list">
+    <% if @viewings.any? %>
+      <% @viewings.first(10).each do |viewing| %>
+        <div class="movie-item">
+          <% if viewing['poster_path'] %>
+            <%= image_tag "https://image.tmdb.org/t/p/w92#{viewing['poster_path']}",
+              alt: viewing['title'],
+              class: "movie-poster" %>
+          <% end %>
+          <div class="movie-info">
+            <h3><%= viewing['title'] %></h3>
+            <p><%= viewing['release_date']&.split('-')&.first %></p>
+            <p class="overview"><%= truncate(viewing['overview'], length: 100) %></p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Aucun résultat trouvé</p>
+    <% end %>
+  </div>
+<% end %>
