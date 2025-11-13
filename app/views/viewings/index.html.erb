@@ -1,24 +1,8 @@
-
-<!-- app/views/viewings/index.html.erb -->
-<div class="container" data-controller="search">
-  <h1>Rechercher des films</h1>
-
-  <%= form_with url: search_viewings_path, method: :get, data: {
-    search_target: "form",
-    turbo_frame: "search_results",
-    turbo_stream: true,
-    action: "input->search#perform"
-  } do |f| %>
-    <%= f.text_field :query,
-      placeholder: "Rechercher un film...",
-      data: { search_target: "input" },
-      autocomplete: "off",
-      class: "form-control" %>
-  <% end %>
-
-  <%= turbo_frame_tag "search_results" do %>
-    <div id="results" data-search-target="results">
-      <!-- Les résultats apparaîtront ici -->
-    </div>
-  <% end %>
-</div>
+<% @viewings.each do |viewing|%>
+  <div class="border">
+    <%= viewing.poster_path %>
+    <%= viewing.title %>
+    <%= viewing.release_date %>
+    <%= viewing.overview %>
+  </div>
+<% end %>
