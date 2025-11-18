@@ -1,0 +1,33 @@
+<div class="results-list">
+  <% if viewings.any? %>
+    <% viewings.first(10).each do |viewing| %>
+      <div class="movie-item">
+        <% if viewing['poster_path'] %>
+          <%= image_tag "https://image.tmdb.org/t/p/w92#{viewing['poster_path']}",
+            alt: viewing['title'],
+            class: "movie-poster" %>
+        <% end %>
+        <div class="movie-info">
+          <h3><%= viewing['title'] %></h3>
+          <p><%= viewing['release_date']&.split('-')&.first %></p>
+          <p class="overview"><%= truncate(viewing['overview'], length: 100) %></p>
+        </div>
+        <%= button_to "Ajouter à ma bibliothèque",
+            viewings_path,
+            method: :post,
+            params: {
+              viewing: {
+                title: viewing['title'],
+                poster_path: viewing['poster_path'],
+                release_date: viewing['release_date'],
+                overview: viewing['overview'],
+                tmdb_id: viewing['id']
+              }
+            },
+            class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>Aucun résultat trouvé</p>
+  <% end %>
+</div>

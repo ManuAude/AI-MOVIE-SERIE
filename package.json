@@ -1,0 +1,11 @@
+{
+  "name": "app",
+  "packageManager": "yarn@3.5.1",
+  "dependencies": {
+    "@tailwindcss/cli": "latest",
+    "tailwindcss": "latest"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
+  }
+}

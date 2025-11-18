@@ -1,0 +1,18 @@
+<div class="container" data-controller="search">
+  <h1 class="text-sky-500">Rechercher des films</h1>
+
+  <%= form_with url: search_viewings_path, method: :get, data: {
+    search_target: "form",
+    action: "input->search#perform"
+  } do |f| %>
+    <%= f.text_field :query,
+      placeholder: "Rechercher un film...",
+      data: { search_target: "input" },
+      autocomplete: "off",
+      class: "form-control" %>
+  <% end %>
+
+  <div id="search_results" data-search-target="results">
+    <!-- Les résultats apparaîtront ici -->
+  </div>
+</div>
