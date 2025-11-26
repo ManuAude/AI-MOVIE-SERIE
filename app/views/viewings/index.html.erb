@@ -1,7 +1,17 @@
-<h1> ALL VIEWINGS</h1>
-<ul>
-  <% @viewings.each do |viewing| %>
-    <li><%= viewing.title %></li>
-    <li><%= viewing.category %></li>
+
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+  <% @viewings.each do |viewing|%>
+    <div class= "m-3 shadow-md rounded-lg">
+      <% if viewing.poster_path.present? %>
+        <%= image_tag "https://image.tmdb.org/t/p/original#{viewing.poster_path}",
+                      alt: viewing.title,
+                      class: "rounded mb-2" %>
+      <% end %>
+      <div class="p-4">
+        <div class="font-bold"><%= viewing.title %></div>
+        <div class="text-sm mb-3"><%= viewing['release_date']&.split('-')&.first %></div>
+        <%= viewing.overview %>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>

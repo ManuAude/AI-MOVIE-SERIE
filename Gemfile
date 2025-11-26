@@ -5,8 +5,8 @@ ruby "3.3.5"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.5", ">= 7.1.5.2"
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+gem "propshaft"
+
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
@@ -49,9 +49,13 @@ gem "devise"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
-gem "sassc-rails"
+# gem "sassc-rails"
 
 gem "faker"
+
+gem 'httparty'
+
+gem "tailwindcss-rails", "~> 4.4"
 
 group :development, :test do
   gem "dotenv-rails"
@@ -75,3 +79,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "cssbundling-rails", "~> 1.4"

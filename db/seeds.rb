@@ -19,6 +19,8 @@ Viewing.create!(title: Faker::Movie.title, category: "movie")
 puts "Created Viewings"
 Viewing.create!(title: Faker::Movie.title, category: "serie")
 puts "Created Viewings"
+Viewing.create!(title: Faker::Movie.title, category: "serie")
+puts "Created Viewings"
 
 # 3. Display a message 🎉
 puts "Finished! Created #{Viewing.count} viewings."
