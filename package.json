@@ -1,11 +1,10 @@
 {
   "name": "app",
   "packageManager": "yarn@3.5.1",
-  "dependencies": {
-    "@tailwindcss/cli": "latest",
-    "tailwindcss": "latest"
+  "devDependencies": {
+    "tailwindcss": "^3.4.14"
   },
   "scripts": {
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
+    "build:css": "tailwindcss -c ./config/tailwind.config.js -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
   }
 }
