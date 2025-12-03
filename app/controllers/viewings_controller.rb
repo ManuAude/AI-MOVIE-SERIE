@@ -14,12 +14,23 @@ class ViewingsController < ApplicationController
   end
 
   def create
-    @viewing = Viewing.new(viewing_params)
+    viewing_attrs = viewing_params.to_h.compact
+    @viewing = Viewing.find_or_initialize_by(tmdb_id: viewing_attrs["tmdb_id"])
+    @viewing.assign_attributes(viewing_attrs)
 
     if @viewing.save
-      redirect_to viewings_path, notice: "Film ajouté à votre bibliothèque !"
+      @user_viewing = UserViewing.new(user: current_user, viewing: @viewing)
+
+      if @user_viewing.save
+        redirect_to viewings_path, notice: "Film ajouté à votre bibliothèque !"
+      else
+        movie_title = viewing_params[:title].presence || @viewing&.title || "Ce film"
+        flash.now[:alert] = "\"#{movie_title}\" est déjà dans votre bibliothèque."
+        render :results, status: :unprocessable_entity
+      end
     else
-      redirect_to viewings_path, alert: "Erreur lors de l'ajout du film."
+      flash.now[:alert] = "Impossible d'ajouter ce film pour le moment."
+      render :results, status: :unprocessable_entity
     end
   end
 
